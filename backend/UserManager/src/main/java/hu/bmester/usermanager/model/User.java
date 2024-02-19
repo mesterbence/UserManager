@@ -15,16 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User extends BaseEntity {
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "birth_name")
+    @Column(name = "birth_name", nullable = false)
     private String birthName;
 
-    @Column(name = "mothers_name")
+    @Column(name = "mothers_name", nullable = false)
     private String mothersName;
 
     @ManyToOne
@@ -32,13 +32,13 @@ public class User extends BaseEntity {
     private Gender gender;
 
     @ManyToOne
-    @JoinColumn(name = "nationality")
+    @JoinColumn(name = "nationality", nullable = false)
     private Nationality nationality;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "tax_number")
+    @Column(name = "tax_number", nullable = false)
     private String taxNumber;
 
 }
