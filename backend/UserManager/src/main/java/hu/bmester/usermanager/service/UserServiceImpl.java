@@ -1,6 +1,6 @@
 package hu.bmester.usermanager.service;
 
-import hu.bmester.usermanager.model.User;
+import hu.bmester.usermanager.model.user.User;
 import hu.bmester.usermanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
-package hu.bmester.usermanager.model;
+package hu.bmester.usermanager.model.user;
 
+import hu.bmester.usermanager.model.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

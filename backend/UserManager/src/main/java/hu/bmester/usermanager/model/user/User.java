@@ -1,11 +1,16 @@
-package hu.bmester.usermanager.model;
+package hu.bmester.usermanager.model.user;
 
 
+import hu.bmester.usermanager.model.BaseEntity;
+import hu.bmester.usermanager.model.user.Gender;
+import hu.bmester.usermanager.model.user.Nationality;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -34,6 +39,9 @@ public class User extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "nationality", nullable = false)
     private Nationality nationality;
+
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses;
 
     @Column(name = "phone", nullable = false)
     private String phone;

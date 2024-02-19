@@ -1,7 +1,7 @@
 package hu.bmester.usermanager.controller;
 
 import hu.bmester.usermanager.dto.NewUserDTO;
-import hu.bmester.usermanager.model.User;
+import hu.bmester.usermanager.model.user.User;
 import hu.bmester.usermanager.service.GenderService;
 import hu.bmester.usermanager.service.NationalityService;
 import hu.bmester.usermanager.service.UserService;

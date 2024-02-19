@@ -1,6 +1,6 @@
 package hu.bmester.usermanager.service;
 
-import hu.bmester.usermanager.model.User;
+import hu.bmester.usermanager.model.user.User;
 
 import java.util.List;
 

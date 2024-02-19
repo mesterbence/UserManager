@@ -1,6 +1,6 @@
 package hu.bmester.usermanager.service;
 
-import hu.bmester.usermanager.model.Gender;
+import hu.bmester.usermanager.model.user.Gender;
 import hu.bmester.usermanager.repository.GenderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
