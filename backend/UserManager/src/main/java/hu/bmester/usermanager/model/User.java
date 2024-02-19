@@ -2,11 +2,17 @@ package hu.bmester.usermanager.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "users")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User extends BaseEntity {
 
     @Column(name = "last_name")
