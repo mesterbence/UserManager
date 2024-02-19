@@ -1,0 +1,6 @@
+.detail-row {
+  height: 0;
+}
+.main-row td {
+  border-bottom-width: 0;
+}

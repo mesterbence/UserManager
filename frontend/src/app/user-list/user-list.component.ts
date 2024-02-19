@@ -11,6 +11,8 @@ import {
   MatTable,
   MatTableDataSource
 } from "@angular/material/table";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {AddressType} from "../model/address-type";
 
 @Component({
   selector: 'app-user-list',
@@ -28,7 +30,14 @@ import {
     MatCellDef
   ],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css'
+  styleUrl: './user-list.component.css',
+  animations: [
+    trigger('showDetails', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class UserListComponent implements  OnInit{
 
@@ -37,7 +46,21 @@ export class UserListComponent implements  OnInit{
   dataSource!: any;
   userList!: User[];
   displayedColumns: string[] = ['lastName', 'firstName', 'birthName', 'phone', 'taxNumber'];
+  expanded!: any;
+  clicked: boolean = false;
 
+
+  toggleRow(row: any) {
+    if(!this.clicked) {
+      if (this.expanded === row) {
+        this.expanded = null;
+      } else {
+        this.expanded = row;
+      }
+    } else {
+      this.clicked = false;
+    }
+  }
   ngOnInit() {
     this.service.getAllUsers().subscribe(
       data => {
@@ -48,4 +71,9 @@ export class UserListComponent implements  OnInit{
     );
   }
 
+  getAddressType(type: AddressType): String {
+    return type == AddressType.PERMANENT ? "Állandó lakcím" : (type == AddressType.MAIL ? "Levelezési cím" : "Tartózkodási hely");
+  }
+
+  protected readonly AddressType = AddressType;
 }

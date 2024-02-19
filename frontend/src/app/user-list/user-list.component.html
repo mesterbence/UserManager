@@ -1,7 +1,10 @@
 @if(dataSource) {
-  <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+  <table mat-table class="mat-elevation-z8" [dataSource]="dataSource" multiTemplateDataRows>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="main-row"
+        [class.example-expanded-row]="expanded === element" (click)="toggleRow(element)">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['details']" class="detail-row"></tr>
 
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef>Vezetéknév</th>
@@ -27,6 +30,26 @@
       <th mat-header-cell *matHeaderCellDef>Adószám</th>
       <td mat-cell *matCellDef="let element"> {{element.taxNumber }}</td>
     </ng-container>
+
+    <ng-container matColumnDef="details">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="detail-view" [@showDetails]="element == expanded ? 'expanded' : 'collapsed'">
+              <hr>
+              <div>Vezetéknév: {{ element.lastName }}</div>
+              <div>Keresztnév: {{ element.firstName }}</div>
+              <div>Születési név: {{ element.birthName }}</div>
+              <div>Anyja neve: {{ element.mothersName }}</div>
+              <div>Nem: {{ element.gender?.name }}</div>
+              <div>Nemzetiség: {{ element.nationality.name }}</div>
+              @for (address of element.addresses; track address) {
+                <div>{{ getAddressType(address.type) }}: {{address.city}} {{address.street}} {{address.number}}</div>
+              }
+              <div>Telefon: {{ element.phone }}</div>
+              <div>Adószám: {{ element.taxNumber }}</div>
+        </div>
+      </td>
+    </ng-container>
+
 
   </table>
 

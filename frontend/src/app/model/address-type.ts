@@ -1,5 +1,5 @@
 export enum AddressType {
-  PERMANENT,
-  MAIL,
-  RESIDENCE
+  PERMANENT= "PERMANENT",
+  MAIL = "MAIL",
+  RESIDENCE = "RESIDENCE"
 }
