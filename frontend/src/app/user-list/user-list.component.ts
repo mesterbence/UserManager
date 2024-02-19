@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, TemplateRef} from '@angular/core';
 import {User} from "../model/user";
 import {DataServiceService} from "../service/data-service.service";
 import {
@@ -13,6 +13,12 @@ import {
 } from "@angular/material/table";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AddressType} from "../model/address-type";
+import {MatButton} from "@angular/material/button";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelect} from "@angular/material/select";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-user-list',
@@ -27,7 +33,13 @@ import {AddressType} from "../model/address-type";
     MatHeaderCell,
     MatHeaderCellDef,
     MatCell,
-    MatCellDef
+    MatCellDef,
+    MatButton,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatInput,
+    MatFormFieldModule
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
@@ -41,13 +53,14 @@ import {AddressType} from "../model/address-type";
 })
 export class UserListComponent implements  OnInit{
 
-  constructor(private service: DataServiceService) { }
+  constructor(private service: DataServiceService, private formBuilder: FormBuilder) { }
 
   dataSource!: any;
   userList!: User[];
   displayedColumns: string[] = ['lastName', 'firstName', 'birthName', 'phone', 'taxNumber'];
   expanded!: any;
   clicked: boolean = false;
+  newUserFormGroup!: FormGroup;
 
 
   toggleRow(row: any) {
@@ -71,9 +84,34 @@ export class UserListComponent implements  OnInit{
     );
   }
 
+  initNewUserFormGroup() {
+    this.newUserFormGroup = this.formBuilder.group({
+      lastName: [''],
+      firstName: [''],
+      birthName: [''],
+      mothersName: [''],
+      gender: [''],
+      nationality: [''],
+      addresses: [''],
+      phone: [''],
+      taxNumber: [''],
+    });
+  }
+
   getAddressType(type: AddressType): String {
     return type == AddressType.PERMANENT ? "Állandó lakcím" : (type == AddressType.MAIL ? "Levelezési cím" : "Tartózkodási hely");
   }
 
   protected readonly AddressType = AddressType;
+
+  private modalService = inject(NgbModal);
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+
+  onSubmit() {
+
+  }
 }
