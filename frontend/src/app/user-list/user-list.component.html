@@ -1,0 +1,33 @@
+@if(dataSource) {
+  <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Vezetéknév</th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>Keresztnév</th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthName">
+      <th mat-header-cell *matHeaderCellDef>Születési név</th>
+      <td mat-cell *matCellDef="let element"> {{element.birthName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Telefonszám</th>
+      <td mat-cell *matCellDef="let element"> {{element.phone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="taxNumber">
+      <th mat-header-cell *matHeaderCellDef>Adószám</th>
+      <td mat-cell *matCellDef="let element"> {{element.taxNumber }}</td>
+    </ng-container>
+
+  </table>
+
+}
