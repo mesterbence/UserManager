@@ -91,7 +91,7 @@
           <select id="gender" class="form-control" formControlName="gender">
             <option selected></option>
             @for (gender of genders; track gender) {
-              <option>{{ gender.name }}</option>
+              <option value="{{gender.id}}">{{ gender.name }}</option>
             }
           </select>
         </p>
@@ -100,7 +100,7 @@
           <select id="nationality" class="form-control" formControlName="nationality">
             <option selected></option>
             @for (nationality of nationalities; track nationality) {
-              <option>{{ nationality.name }}</option>
+              <option value="{{nationality.id}}">{{ nationality.name }}</option>
             }
           </select>
         </p>
@@ -111,6 +111,54 @@
         <p>
           <label for="taxNumber">Adószám</label>
           <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber">
+        </p>
+        <p>
+          <label for="permanentPostCode">Állandó lakcím irányítószám</label>
+          <input type="text" class="form-control" id="permanentPostCode" formControlName="permanentPostCode">
+        </p>
+        <p>
+          <label for="permanentCity">Állandó lakcím város</label>
+          <input type="text" class="form-control" id="permanentCity" formControlName="permanentCity">
+        </p>
+        <p>
+          <label for="permanentStreet">Állandó lakcím utca</label>
+          <input type="text" class="form-control" id="permanentStreet" formControlName="permanentStreet">
+        </p>
+        <p>
+          <label for="permanentNumber">Állandó lakcím házszám</label>
+          <input type="text" class="form-control" id="permanentNumber" formControlName="permanentNumber">
+        </p>
+        <p>
+          <label for="mailPostCode">Levelezési cím irányítószám</label>
+          <input type="text" class="form-control" id="mailPostCode" formControlName="mailPostCode">
+        </p>
+        <p>
+          <label for="mailCity">Levelezési cím város</label>
+          <input type="text" class="form-control" id="mailCity" formControlName="mailCity">
+        </p>
+        <p>
+          <label for="mailStreet">Levelezési cím utca</label>
+          <input type="text" class="form-control" id="mailStreet" formControlName="mailStreet">
+        </p>
+        <p>
+          <label for="mailNumber">Levelezési cím házszám</label>
+          <input type="text" class="form-control" id="mailNumber" formControlName="mailNumber">
+        </p>
+        <p>
+          <label for="residencePostCode">Tartózkodási hely irányítószám</label>
+          <input type="text" class="form-control" id="residencePostCode" formControlName="residencePostCode">
+        </p>
+        <p>
+          <label for="residenceCity">Tartózkodási hely város</label>
+          <input type="text" class="form-control" id="residenceCity" formControlName="residenceCity">
+        </p>
+        <p>
+          <label for="residenceStreet">Tartózkodási hely utca</label>
+          <input type="text" class="form-control" id="residenceStreet" formControlName="residenceStreet">
+        </p>
+        <p>
+          <label for="residenceNumber">Tartózkodási hely házszám</label>
+          <input type="text" class="form-control" id="residenceNumber" formControlName="residenceNumber">
         </p>
       </div>
     </div>

@@ -1,6 +1,5 @@
 package hu.bmester.usermanager.dto;
 
-import hu.bmester.usermanager.model.user.Address;
 import lombok.Data;
 
 import java.util.List;

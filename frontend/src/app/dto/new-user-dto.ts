@@ -7,8 +7,8 @@ export class NewUserDTO {
   firstName?: String;
   birthName?: String;
   mothersName?: String;
-  gender?: Gender;
-  nationality?: Nationality;
+  genderId?: number;
+  nationalityId?: number;
   addresses?: NewAddressDTO[];
   phone?: String;
   taxNumber?: String;
