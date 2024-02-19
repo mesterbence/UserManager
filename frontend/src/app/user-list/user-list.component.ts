@@ -19,6 +19,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelect} from "@angular/material/select";
 import {MatInput} from "@angular/material/input";
+import {Gender} from "../model/gender";
 
 @Component({
   selector: 'app-user-list',
@@ -61,6 +62,7 @@ export class UserListComponent implements  OnInit{
   expanded!: any;
   clicked: boolean = false;
   newUserFormGroup!: FormGroup;
+  genders!: Gender[];
 
 
   toggleRow(row: any) {
@@ -82,6 +84,11 @@ export class UserListComponent implements  OnInit{
         this.dataSource = new MatTableDataSource(this.userList);
       }
     );
+    this.service.getAllGenders().subscribe(
+      data => {
+        this.genders = data;
+      }
+    )
   }
 
   initNewUserFormGroup() {

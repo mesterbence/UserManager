@@ -87,6 +87,14 @@
           <input type="text" class="form-control" id="mothersName">
         </p>
         <p>
+          <label for="gender">Nem</label>
+          <select id="gender" class="form-control">
+            @for (gender of genders; track gender) {
+              <option>{{ gender.name }}</option>
+            }
+          </select>
+        </p>
+        <p>
           <label for="phone">Telefon</label>
           <input type="text" class="form-control" id="phone">
         </p>

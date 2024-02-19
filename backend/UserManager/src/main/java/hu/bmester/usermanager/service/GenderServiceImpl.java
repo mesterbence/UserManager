@@ -5,6 +5,8 @@ import hu.bmester.usermanager.repository.GenderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GenderServiceImpl implements GenderService {
 
@@ -14,5 +16,10 @@ public class GenderServiceImpl implements GenderService {
     @Override
     public Gender findGenderById(Long id) {
         return genderRepository.findGenderById(id);
+    }
+
+    @Override
+    public List<Gender> findAll() {
+        return genderRepository.findAll();
     }
 }
