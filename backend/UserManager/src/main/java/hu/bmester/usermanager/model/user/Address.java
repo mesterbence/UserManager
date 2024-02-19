@@ -3,10 +3,16 @@ package hu.bmester.usermanager.model.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.bmester.usermanager.model.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "addresses")
 public class Address extends BaseEntity {
 

@@ -1,6 +1,9 @@
 package hu.bmester.usermanager.dto;
 
+import hu.bmester.usermanager.model.user.Address;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class NewUserDTO {
@@ -13,5 +16,6 @@ public class NewUserDTO {
     private Long nationalityId;
     private String phone;
     private String taxNumber;
+    List<NewAddressDTO> addresses;
 
 }
