@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {User} from "../model/user";
 import {environment} from "../environments/environment";
 import {Gender} from "../model/gender";
+import {Nationality} from "../model/nationality";
+import {NewUserDTO} from "../dto/new-user-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +21,13 @@ export class DataServiceService {
   getAllGenders(): Observable<Gender[]> {
     return this.httpClient.get<Gender[]>(`${environment.baseUrl}/gender/all`);
   }
+
+  getAllNationalities(): Observable<Nationality[]> {
+    return this.httpClient.get<Nationality[]>(`${environment.baseUrl}/nationality/all`);
+  }
+  recordNewUser(user: NewUserDTO) {
+    console.log(user);
+}
+
+
 }

@@ -20,6 +20,8 @@ import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelect} from "@angular/material/select";
 import {MatInput} from "@angular/material/input";
 import {Gender} from "../model/gender";
+import {Nationality} from "../model/nationality";
+import {NewUserDTO} from "../dto/new-user-dto";
 
 @Component({
   selector: 'app-user-list',
@@ -63,6 +65,7 @@ export class UserListComponent implements  OnInit{
   clicked: boolean = false;
   newUserFormGroup!: FormGroup;
   genders!: Gender[];
+  nationalities!: Nationality[];
 
 
   toggleRow(row: any) {
@@ -88,7 +91,13 @@ export class UserListComponent implements  OnInit{
       data => {
         this.genders = data;
       }
-    )
+    );
+    this.service.getAllNationalities().subscribe(
+      data => {
+        this.nationalities = data;
+      }
+    );
+    this.initNewUserFormGroup();
   }
 
   initNewUserFormGroup() {
@@ -119,6 +128,17 @@ export class UserListComponent implements  OnInit{
 
 
   onSubmit() {
-
+    console.log(this.newUserFormGroup);
+    const userDTO : NewUserDTO = {
+      lastName: this.newUserFormGroup.get('lastName')?.value,
+      firstName: this.newUserFormGroup.get('firstName')?.value,
+      birthName: this.newUserFormGroup.get('birthName')?.value,
+      mothersName: this.newUserFormGroup.get('mothersName')?.value,
+      gender: this.newUserFormGroup.get('gender')?.value,
+      nationality: this.newUserFormGroup.get('nationality')?.value,
+      phone: this.newUserFormGroup.get('phone')?.value,
+      taxNumber: this.newUserFormGroup.get('taxNumber')?.value
+    }
+    this.service.recordNewUser(userDTO);
   }
 }

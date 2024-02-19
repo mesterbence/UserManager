@@ -68,39 +68,49 @@
     <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
   </div>
   <form [formGroup]="newUserFormGroup" (ngSubmit)="onSubmit()">
-    <div class="modal-body top-index">
+    <div class="modal-body">
       <div class="w-100">
         <p>
           <label for="lastName">Vezetéknév</label>
-          <input type="text" class="form-control" id="lastName">
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
         </p>
         <p>
           <label for="firstName">Keresztnév</label>
-          <input type="text" class="form-control" id="firstName">
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
         </p>
         <p>
           <label for="birthName">Születési név</label>
-          <input type="text" class="form-control" id="birthName">
+          <input type="text" class="form-control" id="birthName" formControlName="birthName">
         </p>
         <p>
           <label for="mothersName">Anyja neve</label>
-          <input type="text" class="form-control" id="mothersName">
+          <input type="text" class="form-control" id="mothersName" formControlName="mothersName">
         </p>
         <p>
-          <label for="gender">Nem</label>
-          <select id="gender" class="form-control">
+          <label for="gender">Nem (opcionális)</label>
+          <select id="gender" class="form-control" formControlName="gender">
+            <option selected></option>
             @for (gender of genders; track gender) {
               <option>{{ gender.name }}</option>
             }
           </select>
         </p>
         <p>
+          <label for="nationality">Nemzetiség</label>
+          <select id="nationality" class="form-control" formControlName="nationality">
+            <option selected></option>
+            @for (nationality of nationalities; track nationality) {
+              <option>{{ nationality.name }}</option>
+            }
+          </select>
+        </p>
+        <p>
           <label for="phone">Telefon</label>
-          <input type="text" class="form-control" id="phone">
+          <input type="text" class="form-control" id="phone" formControlName="phone">
         </p>
         <p>
           <label for="taxNumber">Adószám</label>
-          <input type="text" class="form-control" id="taxNumber">
+          <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber">
         </p>
       </div>
     </div>
