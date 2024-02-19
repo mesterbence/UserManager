@@ -87,7 +87,6 @@ export class UserListComponent implements  OnInit{
     this.service.getAllUsers().subscribe(
       data => {
         this.userList = data;
-        console.log(data);
         this.dataSource = new MatTableDataSource(this.userList);
       }
     );
@@ -144,7 +143,6 @@ export class UserListComponent implements  OnInit{
 
 
   onSubmit() {
-    console.log(this.newUserFormGroup);
     const permanentAddressDTO : NewAddressDTO = {
       type: AddressType.PERMANENT,
       postCode: this.newUserFormGroup.get('permanentPostCode')?.value,
@@ -186,7 +184,6 @@ export class UserListComponent implements  OnInit{
     if(residenceAddressDTO.postCode != null && residenceAddressDTO.postCode.length > 0) {
       userDTO.addresses?.push(residenceAddressDTO);
     }
-    console.log(userDTO);
     this.service.recordNewUser(userDTO);
   }
 }
