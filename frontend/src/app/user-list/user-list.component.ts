@@ -190,6 +190,13 @@ export class UserListComponent implements  OnInit{
     this.service.recordNewUser(userDTO).subscribe(
       data => {
         console.log(data);
+        this.modalService.dismissAll();
+        this.service.getAllUsers().subscribe(
+          data => {
+            this.userList = data;
+            this.dataSource = new MatTableDataSource(this.userList);
+          }
+        );
       },
       error => {
         console.log(error);
