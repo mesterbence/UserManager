@@ -26,6 +26,8 @@ import {Gender} from "../model/gender";
 import {Nationality} from "../model/nationality";
 import {NewUserDTO} from "../dto/new-user-dto";
 import {NewAddressDTO} from "../dto/new-address-dto";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-user-list',
@@ -46,7 +48,8 @@ import {NewAddressDTO} from "../dto/new-address-dto";
     MatFormField,
     MatSelect,
     MatInput,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgIf
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
@@ -184,6 +187,13 @@ export class UserListComponent implements  OnInit{
     if(residenceAddressDTO.postCode != null && residenceAddressDTO.postCode.length > 0) {
       userDTO.addresses?.push(residenceAddressDTO);
     }
-    this.service.recordNewUser(userDTO);
+    this.service.recordNewUser(userDTO).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

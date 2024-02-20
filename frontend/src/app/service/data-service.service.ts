@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {User} from "../model/user";
 import {environment} from "../environments/environment";
 import {Gender} from "../model/gender";
@@ -28,11 +28,14 @@ export class DataServiceService {
   }
 
   recordNewUser(user: NewUserDTO) {
-    this.httpClient.post<NewUserDTO>(`${environment.baseUrl}/user/create`, user).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.httpClient.post<NewUserDTO>(`${environment.baseUrl}/user/create`, user)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+      return throwError(error.error);
   }
 
 
