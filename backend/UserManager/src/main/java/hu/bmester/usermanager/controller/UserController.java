@@ -9,9 +9,12 @@ import hu.bmester.usermanager.service.GenderService;
 import hu.bmester.usermanager.service.NationalityService;
 import hu.bmester.usermanager.service.UserService;
 import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +50,8 @@ public class UserController {
         if(newUserDTO.getAddresses() == null || newUserDTO.getAddresses().stream()
                 .filter(address -> address.getType() == AddressType.PERMANENT)
                 .collect(Collectors.toList()).isEmpty()) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("\"permanent\": \"necessary\"", HttpStatus.BAD_REQUEST);
+
         }
         User toSave = User.builder()
                 .lastName(newUserDTO.getLastName())
