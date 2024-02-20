@@ -8,11 +8,16 @@ import hu.bmester.usermanager.service.AddressService;
 import hu.bmester.usermanager.service.GenderService;
 import hu.bmester.usermanager.service.NationalityService;
 import hu.bmester.usermanager.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -38,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    private ResponseEntity createNewUser(@RequestBody NewUserDTO newUserDTO) {
+    private ResponseEntity createNewUser(@Valid @RequestBody NewUserDTO newUserDTO) {
         if(newUserDTO.getAddresses() == null || newUserDTO.getAddresses().stream()
                 .filter(address -> address.getType() == AddressType.PERMANENT)
                 .collect(Collectors.toList()).isEmpty()) {
@@ -67,5 +72,19 @@ public class UserController {
             addressService.save(newAddress);
         });
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
