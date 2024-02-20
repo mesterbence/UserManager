@@ -23,7 +23,7 @@ jobs:
           SQL_URL: ${{ secrets.USERMANAGER_SQL_URL }}
           SQL_USER: ${{ secrets.USERMANAGER_SQL_USER }}
           SQL_PASS: ${{ secrets.USERMANAGER_SQL_PASS }}
-      run: docker build . --file Backend/Dockerfile --tag usermanager:latest
+      run: docker build . --file backend/UserManager/Dockerfile --tag usermanager:latest
     - name: Run Docker container
       env:
           SQL_URL: ${{ secrets.USERMANAGER_SQL_URL }}
