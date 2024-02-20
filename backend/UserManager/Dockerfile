@@ -1,5 +1,5 @@
 FROM amazoncorretto:17
-ARG JAR_FILE=Backend/UserManager/target/*.jar
+ARG JAR_FILE=backend/UserManager/target/*.jar
 ARG USERMANAGER_SQL_URL
 ARG USERMANAGER_SQL_USER
 ARG USERMANAGER_SQL_PASS
