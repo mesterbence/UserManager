@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM amazoncorretto:17
 ARG JAR_FILE=Backend/target/*.jar
 ARG USERMANAGER_SQL_URL
 ARG USERMANAGER_SQL_USER
