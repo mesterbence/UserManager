@@ -12,5 +12,6 @@ ENV APP_IMAGE=$APP_IMAGE
 
 EXPOSE 8085
 
+
 COPY ${JAR_FILE} app.jar
 CMD ["java", "-jar", "app.jar"]
