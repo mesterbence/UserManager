@@ -129,6 +129,7 @@ export class UserListComponent implements  OnInit{
       residenceCity: [''],
       residenceStreet: [''],
       residenceNumber: [''],
+      note: ['']
     });
   }
 
@@ -176,7 +177,8 @@ export class UserListComponent implements  OnInit{
       nationalityId: this.newUserFormGroup.get('nationality')?.value,
       phone: this.newUserFormGroup.get('phone')?.value,
       taxNumber: this.newUserFormGroup.get('taxNumber')?.value,
-      addresses: []
+      addresses: [],
+      note: this.newUserFormGroup.get('note')?.value
     };
     if(permanentAddressDTO.postCode != null && permanentAddressDTO.postCode.length > 0) {
       userDTO.addresses?.push(permanentAddressDTO);
