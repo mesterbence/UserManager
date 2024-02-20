@@ -49,4 +49,7 @@ public class User extends BaseEntity {
     @Column(name = "tax_number", nullable = false)
     private String taxNumber;
 
+    @OneToOne(mappedBy = "user")
+    private Note note;
+
 }

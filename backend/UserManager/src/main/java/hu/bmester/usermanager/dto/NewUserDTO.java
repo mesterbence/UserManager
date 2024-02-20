@@ -34,4 +34,6 @@ public class NewUserDTO {
     @NotNull
     List<NewAddressDTO> addresses;
 
+    private String note;
+
 }

@@ -35,6 +35,14 @@ create table public.addresses(
                                  number          VARCHAR(20)     NOT NULL
 );
 
+drop table if exists public.notes;
+create table public.notes
+(
+    id      SERIAL NOT NULL UNIQUE PRIMARY KEY,
+    user_id INT    NOT NULL REFERENCES public.users (id),
+    note    TEXT   NOT NULL
+);
+
 insert into public.genders (name) values ('Férfi');
 insert into public.genders (name) values ('Nő');
 

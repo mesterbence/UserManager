@@ -1,6 +1,7 @@
 import {Gender} from "./gender";
 import {Nationality} from "./nationality";
 import {Address} from "./address";
+import {Note} from "./note";
 
 export class User {
   lastName!: String;
@@ -12,5 +13,6 @@ export class User {
   addresses!: Address[];
   phone!: String;
   taxNumber!: String;
+  note!: Note;
 
 }

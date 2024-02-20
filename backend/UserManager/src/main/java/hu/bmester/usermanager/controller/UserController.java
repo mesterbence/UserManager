@@ -3,13 +3,12 @@ package hu.bmester.usermanager.controller;
 import hu.bmester.usermanager.dto.NewUserDTO;
 import hu.bmester.usermanager.model.user.Address;
 import hu.bmester.usermanager.model.user.AddressType;
+import hu.bmester.usermanager.model.user.Note;
 import hu.bmester.usermanager.model.user.User;
-import hu.bmester.usermanager.service.AddressService;
-import hu.bmester.usermanager.service.GenderService;
-import hu.bmester.usermanager.service.NationalityService;
-import hu.bmester.usermanager.service.UserService;
+import hu.bmester.usermanager.service.*;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
@@ -39,6 +38,9 @@ public class UserController {
 
     @Autowired
     private AddressService addressService;
+
+    @Autowired
+    private NoteService noteService;
 
     @GetMapping("/all")
     private ResponseEntity getAllUsers() {
@@ -75,6 +77,11 @@ public class UserController {
                     .build();
             addressService.save(newAddress);
         });
+        Note noteToSave = Note.builder()
+                .user(savedUser)
+                .note(newUserDTO.getNote())
+                .build();
+        noteService.save(noteToSave);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 

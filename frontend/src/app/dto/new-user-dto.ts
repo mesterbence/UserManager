@@ -12,4 +12,5 @@ export class NewUserDTO {
   addresses?: NewAddressDTO[];
   phone?: String;
   taxNumber?: String;
+  note?: String;
 }
