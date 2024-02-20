@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Package
       run: mvn clean package -Dmaven.test.skip
-      working-directory: Backend/
+      working-directory: backend/
     - name: Build the Docker image
       env:
           SQL_URL: ${{ secrets.USERMANAGER_SQL_URL }}
@@ -31,6 +31,6 @@ jobs:
           SQL_PASS: ${{ secrets.USERMANAGER_SQL_PASS }}
       run: docker run -d -p 8085:8085 -e USERMANAGER_SQL_USER=${{ secrets.USERMANAGER_SQL_USER }} -e USERMANAGER_SQL_PASS=${{ secrets.USERMANAGER_SQL_PASS }} -e USERMANAGER_SQL_URL=${{ secrets.USERMANAGER_SQL_URL }} usermanager
     - name: Build the Frontend docker image
-      run: docker build . --file Frontend/Dockerfile --tag usermanager_frontend:latest
+      run: docker build . --file frontend/Dockerfile --tag usermanager_frontend:latest
     - name: Run Frontend Docker container
       run: docker run -d -p 85:80 usermanager_frontend
